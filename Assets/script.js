@@ -10,25 +10,33 @@ $(".saveBtn").on("click", function () {
   localStorage.setItem(time, text);
 });
 
+$("#hour8 .description").val(localStorage.getItem("hour8"));
+$("#hour9 .description").val(localStorage.getItem("hour9"));
+$("#hour10 .description").val(localStorage.getItem("hour10"));
+$("#hour11 .description").val(localStorage.getItem("hour11"));
+
+
 function timetracker(){
-var liveHour = today.hours();
+var liveHour = moment().hours();
+
+
 $('.time-block').each(function(){
     var loopId = parseInt($(this).attr('id').split('hour')[1]);
-})
-if (loopId<currentHour) {
+
+if (loopId < liveHour) {
     $(this).addClass('past');
 }
-else if (loopID === currentHour){
+else if (loopId === liveHour){
     $(this).removeClass('past')
     $(this).removeClass('future')
     $(this).addClass('present')
-
-
 }
-
+else{
+    $(this).removeClass('past')
+    $(this).removeClass('present')
+    $(this).addClass('future')
 }
+})
+}
+timetracker()
 
-$("#hour8 .description").val(localStorage).getItem("hour8");
-$("#hour9 .description").val(localStorage).getItem("hour9");
-$("#hour10 .description").val(localStorage).getItem("hour10");
-$("#hour11 .description").val(localStorage).getItem("hour11");
